@@ -17,7 +17,7 @@ jobs:
       uses: Bassman2/create-solution@main
       with:
         name: TestSolution
-        projects: [ 'Tests\\DemoCS48\\DemoCS48.csproj', 'Tests\\DemoCS50\\DemoCS50.csproj' ]       
+        projects: 'Tests\\DemoCS48\\DemoCS48.csproj, Tests\\DemoCS50\\DemoCS50.csproj'       
         
     - name: Test
       run: type TestSolution.sln
