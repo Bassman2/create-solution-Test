@@ -14,7 +14,7 @@ jobs:
       uses: microsoft/setup-msbuild@v1
       
     - name: Create Solution
-      uses: Bassman2/create-solution@main
+      uses: Bassman2/create-solution@v1
       with:
         name: TestSolution
         projects: 'Tests\\DemoCS48\\DemoCS48.csproj, Tests\\DemoCS50\\DemoCS50.csproj'       
