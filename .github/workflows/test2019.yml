@@ -5,22 +5,23 @@ on: [push, pull_request]
 jobs:
   build:
     runs-on: windows-2019
-#    env:
-#      SHFB_VERSION: V2021.4.9.0
-#      SHFB_ROOT: C:\Program Files (x86)\EWSoftware\Sandcastle Help File Builder\
     
     steps:
- 
     - name: Install checkout
       uses: actions/checkout@v2
       
-    - name: Install create-solution
-      uses: ./
+    - name: Add msbuild to PATH
+      uses: microsoft/setup-msbuild@v1
+      
+    - name: Create Solution
+      uses: Bassman2/create-solution
       with:
-        name: DemoSolution
-        projects: Demo1.csproj, Demo2.csproj
-        
+        name: TestSolution
+        projects: "Tests\DemoCS48\DemoCS48.csproj", "Tests\DemoCS50\DemoCS50.csproj"        
         
     - name: Test
-      run: type DemoSolution.sln
+      run: type TestSolution.sln
       shell: cmd
+      
+    - name: Build solution
+      run: msbuild TestSolution.sln /p:configuration="Release" /m /verbosity:minimal
